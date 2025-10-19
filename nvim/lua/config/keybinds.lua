@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "//"
 
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
+
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
@@ -38,8 +42,8 @@ map("n", "gc", function() vim.lsp.buf.declaration() end)
 map("n", "gt", function() vim.lsp.buf.type_definition() end)
 map("n", "K", function() vim.lsp.buf.hover() end)
 map("n", "<leader>ee", function() vim.diagnostic.open_float() end)
-map("n", "<leader>en", function() vim.diagnostic.goto_next() end)
-map("n", "<leader>ep", function() vim.diagnostic.goto_prev() end)
+map("n", "<leader>en", function() vim.diagnostic.get_next() end)
+map("n", "<leader>ep", function() vim.diagnostic.get_prev() end)
 map("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
 map("n", "<leader>rf", function() vim.lsp.buf.references() end)
 map("n", "<leader>rn", function() vim.lsp.buf.rename() end)
